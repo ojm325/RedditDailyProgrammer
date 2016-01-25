@@ -9,16 +9,7 @@ import java.util.List;
  * https://www.reddit.com/r/dailyprogrammer/comments/3wshp7/20151214_challenge_245_easy_date_dilemma/
  */
 public class DateDilemma {
-    public void solution(){
-        validate("2/13/15");
-        validate("1-31-10");
-        validate("5 10 2015");
-        validate("2012 3 17");
-        validate("2001-01-01");
-        validate("2008/01/07");
-    }
-
-    public void validate(String str){
+    public String validate(String str){
         List<String> date = new ArrayList();
         int month;
         int day;
@@ -45,10 +36,12 @@ public class DateDilemma {
             year = Integer.parseInt(date.get(2));
         }
 
-        stringFormatter(month, day, year);
+        String formattedDate = stringFormatter(month, day, year);
+
+        return formattedDate;
     }
 
-    public void stringFormatter(int m, int d, int y){
+    public String stringFormatter(int m, int d, int y){
         String month;
         String day;
         String year;
@@ -74,7 +67,9 @@ public class DateDilemma {
             year = ""+y;
         }
 
-        System.out.println(year+" "+month+" "+day);
+        String str = year+"-"+month+"-"+day;
+
+        return str;
 
     }
 }
