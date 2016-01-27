@@ -17,7 +17,14 @@ public class VHSRecordingProblem {
             int start = Integer.parseInt(times[0]);
             int end = Integer.parseInt(times[1]);
 
-            TVShow show = new TVShow(start, end, null);
+            String name = "";
+            if(times.length > 2){
+                for(int j = 2; j < times.length; j++){
+                    name += times[j]+" ";
+                }
+            }
+
+            TVShow show = new TVShow(start, end, name);
             shows.add(show);
         }
 
@@ -60,9 +67,13 @@ public class VHSRecordingProblem {
         if(questionType.equals("Normal")) {
             return ""+recordedShows.size();
         }else if(questionType.equals("Bonus 1")){
-
+            String output = "";
+            for (TVShow s: recordedShows) {
+                output += s.name+"\n";
+            }
+            return output;
         }else if(questionType.equals("Bonus 2")){
-
+            return null;
         }
 
         return null;

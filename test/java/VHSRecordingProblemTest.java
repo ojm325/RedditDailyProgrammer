@@ -29,12 +29,16 @@ public class VHSRecordingProblemTest {
         assertEquals("3", test.solveMain(file, "Normal"));
     }
 
-    /*
+
     @Test
     public void bonus1(){
-        assertEquals("2015-02-13", test.validate("2/13/15"));
+        List<String>file = fileReader("VHSRecordingProblemInput4.txt");
+        assertEquals("Pokémon\n" +
+                "Law & Order\n" +
+                "The Fresh Prince of Bel-Air", test.solveMain(file, "Bonus 1"));
     }
 
+    /*
     @Test
     public void bonus2(){ assertEquals("2010-01-31", test.validate("1-31-10")); }
     */
