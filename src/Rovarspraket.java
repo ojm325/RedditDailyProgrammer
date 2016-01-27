@@ -9,14 +9,14 @@ import java.util.List;
  * https://www.reddit.com/r/dailyprogrammer/comments/341c03/20150427_challenge_212_easy_r%C3%B6varspr%C3%A5ket/
  */
 public class Rovarspraket {
-    public String solve(String str){
-        // Easier to do it this way rather than having several lines calling .add
-        String[] c = {"B", "C", "D", "F", "G", "H", "J", "K", "L",
-                "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z",
-                "b", "c", "d", "f", "g", "h", "j", "k", "l",
-                "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"};
-        List<String> consonants = Arrays.asList(c);
+    // Easier to do it this way rather than having several lines calling .add
+    String[] c = {"B", "C", "D", "F", "G", "H", "J", "K", "L",
+            "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Z",
+            "b", "c", "d", "f", "g", "h", "j", "k", "l",
+            "m", "n", "p", "q", "r", "s", "t", "v", "w", "x", "z"};
+    List<String> consonants = Arrays.asList(c);
 
+    public String solve(String str){
         String output = "";
         String[] phrase = str.split("");
 
@@ -28,6 +28,25 @@ public class Rovarspraket {
             }
         }
 
+        return output;
+    }
+
+    public String decode(String str){
+        String output = "";
+        String[] phrase = str.split("");
+
+        for(int i = 0; i < phrase.length-2; i++){
+            if(consonants.contains(phrase[i])
+                    && phrase[i+1].equals("o")
+                    && consonants.contains(phrase[i+2])){
+                phrase[i+1] = phrase[i+2] = "";
+
+            }
+        }
+
+        for(int i = 0; i < phrase.length; i++){
+            output += phrase[i];
+        }
         return output;
     }
 }

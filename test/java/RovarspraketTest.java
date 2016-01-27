@@ -17,4 +17,14 @@ public class RovarspraketTest {
         assertEquals("I'mom sospopeakokinongog Rorobobboberor'sos lolanongoguagoge!", test.solve("I'm speaking Robber's language!"));
     }
 
+    @Test
+    public void bonus1(){
+        assertEquals("Jag talar Rövarspråket!", test.decode("Jojagog totalolaror Rorövovarorsospoproråkoketot!"));
+    }
+
+    @Test
+    public void bonus2(){
+        assertEquals("Popol Vuh", test.decode("Popopopol Vovuhoh"));
+    }
+
 }
