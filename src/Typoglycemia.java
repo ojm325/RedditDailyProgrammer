@@ -35,12 +35,15 @@ public class Typoglycemia {
                 // and make one final arrangement at the end of the main for loop.
                 int lastLetterPosition = -1;
                 if(!Character.isAlphabetic(letters[letters.length-1].charAt(0))){
-                    lastLetterPosition = letters.length-2;
+                    lastLetterPosition = letters.length-3;
                     //System.out.println(letters[lastLetterPosition]);
                 }
 
 
                 String[] scrambledLetters = Arrays.copyOfRange(letters, 1, letters.length - 1);
+                if(lastLetterPosition == 8) {
+                    System.out.println("SCRAMBLED " + scrambledLetters[8]);
+                }
 
                 Random rnd = ThreadLocalRandom.current();
                 for (int j = scrambledLetters.length - 1; j > 0; j--) {
@@ -52,25 +55,31 @@ public class Typoglycemia {
                     }
 
                     // We have this here to handle words with apostrophes like won't or doesn't
-                    if((Character.isAlphabetic(scrambledLetters[j].charAt(0)) && Character.isAlphabetic(scrambledLetters[pos].charAt(0)))
-                    ||(lastLetterPosition != j) || lastLetterPosition != pos){
+                    if((Character.isAlphabetic(scrambledLetters[j].charAt(0)) && Character.isAlphabetic(scrambledLetters[pos].charAt(0)))){
                         String letter = scrambledLetters[pos];
                         scrambledLetters[pos] = scrambledLetters[j];
                         scrambledLetters[j] = letter;
-
-                        if(lastLetterPosition != -1){
-                            //System.out.println(lastLetterPosition+ " "+j+" "+pos+ " || "+letter+ " || " +scrambledLetters);
+                        if(lastLetterPosition == j){
+                            lastLetterPosition = pos;
+                        }else if(lastLetterPosition == pos){
+                            lastLetterPosition = j;
                         }
                     }
+                }
 
-                    //System.out.println(pos+"||"+letters.length);
+                if(lastLetterPosition != -1){
+                    String letter = scrambledLetters[lastLetterPosition];
+                    scrambledLetters[lastLetterPosition] = scrambledLetters[letters.length-3];
+                    scrambledLetters[letters.length-3] = letter;
+
+                    System.out.println(lastLetterPosition);
                 }
 
                 for (int j = 0; j < letters.length; j++) {
-                    if((j == 0) || (j == letters.length-1)){
+                    if ((j == 0) || (j == letters.length - 1)) {
                         newWord += letters[j];
-                    }else{
-                        newWord += scrambledLetters[j-1];
+                    } else {
+                        newWord += scrambledLetters[j - 1];
                     }
                 }
             }else{
@@ -92,7 +101,7 @@ public class Typoglycemia {
         List<String>text = new ArrayList<>();
 
         try{
-            String filePath = "/Users/omar/Documents/RedditDailyProgrammer/test/java/TypoglycemiaInputs/"+fileName;
+            String filePath = "C:\\Users\\Omar\\IdeaProjects\\RedditDailyProgrammer\\test\\java\\TypoglycemiaInputs\\"+fileName;
             textLines = Files.readAllLines(Paths.get(filePath));
 
             for(int i = 0; i < textLines.size(); i++) {
